@@ -1,2 +1,2 @@
-# WhatsApp-Cleaner
-WhatsApp folder trash cleaner
+# App-Cleaner
+App trash cleaner
