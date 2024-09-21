@@ -4,12 +4,22 @@ import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.io.File
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 
 class CleanOptionsActivity : AppCompatActivity() {
+
+    private val STORAGE_PERMISSION_CODE = 1001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_clean_options)
+
+        // Memeriksa izin penyimpanan
+        checkStoragePermissions()
 
         val checkBoxShared = findViewById<CheckBox>(R.id.checkBoxShared)
         val checkBoxDatabases = findViewById<CheckBox>(R.id.checkBoxDatabases)
@@ -53,5 +63,39 @@ class CleanOptionsActivity : AppCompatActivity() {
     private fun deleteWhatsAppFiles() {
         val directories = arrayOf(".shared", "Databases", "Backups", "Media/.statuses")
         directories.forEach { dir -> deleteSpecificFolder(dir) }
+    }
+
+    // Fungsi untuk memeriksa dan meminta izin penyimpanan
+    private fun checkStoragePermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.READ_EXTERNAL_STORAGE
+                ) != PackageManager.PERMISSION_GRANTED) {
+                
+                // Meminta izin jika belum diberikan
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    STORAGE_PERMISSION_CODE
+                )
+            }
+        }
+    }
+
+    // Menangani hasil permintaan izin
+    override fun onRequestPermissionsResult(
+        requestCode: Int, 
+        permissions: Array<out String>, 
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Izin penyimpanan diberikan", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Izin penyimpanan ditolak", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
