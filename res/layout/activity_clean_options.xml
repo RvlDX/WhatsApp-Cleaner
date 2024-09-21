@@ -1,0 +1,70 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CleanOptionsActivity">
+
+    <!-- Pilihan kategori pembersihan -->
+    <CheckBox
+        android:id="@+id/checkBoxShared"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=".shared"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxDatabases"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Databases"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxShared"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxBackups"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Backups"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxDatabases"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxStatuses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=".statuses"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxBackups"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Tombol bersihkan semua -->
+    <Button
+        android:id="@+id/btnCleanAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bersihkan Semua"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxStatuses"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Tombol bersihkan sesuai pilihan -->
+    <Button
+        android:id="@+id/btnCleanSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bersihkan yang Dipilih"
+        app:layout_constraintTop_toBottomOf="@+id/btnCleanAll"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
