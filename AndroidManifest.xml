@@ -1,20 +1,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.filecleaner">
 
-    <!-- Izin untuk membaca penyimpanan eksternal -->
+    <!-- Izin untuk membaca dan menulis penyimpanan eksternal -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28"/>
-    
+
     <!-- Izin untuk mengelola semua file (hanya untuk Android 11 ke atas) -->
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
-    
+
     <application
-        android:requestLegacyExternalStorage="true" <!-- Ini penting untuk Android 10 dan sebelumnya -->
+        android:requestLegacyExternalStorage="true" <!-- Untuk Android 10 dan sebelumnya -->
         android:label="File Cleaner"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <!-- Activity utama aplikasi -->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </
+        </activity>
+
+        <!-- Activity untuk pilihan pembersihan -->
+        <activity android:name=".CleanOptionsActivity" />
+        
+    </application>
+</manifest>
